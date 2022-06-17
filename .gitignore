@@ -2,4 +2,5 @@ eln-cache/
 tutorial/
 auto-save-list/
 elpa/
+eshell/
 .session

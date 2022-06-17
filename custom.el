@@ -1,8 +1,19 @@
 ;; hide menu bar:
 (menu-bar-mode -1)
 
+;; no-tabs
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+
+;; prevent emacs from splitting windows automatically
+(setq split-height-threshold nil
+      split-width-threshold nil)
+
+;; column mode on
+(setq column-number-mode t)
+
 ;; don't make any backup files.
-(setq make-backup-files  nil)
+(setq make-backup-files nil)
 
 (setq-default show-trailing-whitespace t)
 
@@ -21,6 +32,7 @@
 
 ;; open custom.el with C-x r j e
 (set-register ?e (cons 'file "~/.emacs.d/custom.el"))
+(set-register ?1 (cons 'file "/mnt/github/taikochain/protocol/packages/rollup/hardhat.config.ts"))
 
 ;; remove trailing whitespaces when saving file.
 (defun my-prog-nuke-trailing-whitespace ()
