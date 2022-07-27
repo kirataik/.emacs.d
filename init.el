@@ -39,6 +39,7 @@ Return a list of installed packages or nil for every skipped package."
  'yasnippet-snippets
  'popup
  'org-bullets
+ 'rust-mode
  ) ;  --> (nil...) if packages are already installed
 
 ;; activate installed packages
@@ -50,6 +51,7 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'js-mode-hook #'smartparens-mode)
 (add-hook 'typescript-mode-hook #'smartparens-mode)
 (add-hook 'solidity-mode-hook #'smartparens-mode)
+(add-hook 'rust-mode-hook #'smartparens-mode)
 
 ;; yasnippet configs:
 (require 'yasnippet)
@@ -99,10 +101,8 @@ Return a list of installed packages or nil for every skipped package."
         (forward-sexp -3)
         (looking-at-p "\\bstruct\\b")))))
 
-
 (add-hook 'solidity-mode-hook
           (lambda () (setq-local c-at-vsemi-p-fn 'solidity-at-vsemi-p)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; load custom.el ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load (concat my-emacs-d "custom.el") t nil)
@@ -114,8 +114,12 @@ Return a list of installed packages or nil for every skipped package."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(c-offsets-alist '((arglist-intro . c-lineup-arglist-intro-after-paren)))
+ '(c-offsets-alist
+   '((arglist-intro . +)
+     (arglist-close . c-lineup-close-paren)))
  '(org-startup-folded 'show2levels)
+ '(package-selected-packages
+   '(rust-mode org-bullets popup yasnippet-snippets yasnippet smartparens typescript-mode solidity-mode))
  '(read-buffer-completion-ignore-case t)
  '(safe-local-variable-values
    '((eval when
